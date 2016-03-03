@@ -1,7 +1,7 @@
 describe("打印小票", function() {
   var bill;
   var code, products;
-  beforeEach(function() {
+  beforeAll(function() {
     codes = [
       'ITEM000001',
       'ITEM000001',
@@ -80,7 +80,7 @@ describe("打印小票", function() {
     bill.printAll();
     expect(bill.toPay).toEqual(24.45);
   });
-  it("有买一赠一又有95折商品", function() {
+  it("有买二赠一又有95折商品", function() {
     codes.push('ITEM000001');
     var p = [];
     for (var i = 0; i < products.length; i++) {
