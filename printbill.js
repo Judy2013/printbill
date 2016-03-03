@@ -25,7 +25,7 @@ PrintBill.prototype.printProduct = function(){
 			var pay_total = pay_quantity*this.pData[i].price; //需要付款的金额
 			if (this.pData[i].promotion == 1) {//属于买二赠一时需要付款的商品数量
 				pay_quantity = 2*Math.floor(cart_quantity/(2+1)) + cart_quantity%(2+1);//实际需要付款的商品数量
-				pay_total = pay_quantity*this.pData[i].price;//实际需要付款的商品数量
+				pay_total = pay_quantity*this.pData[i].price;//实际需要支付的金额
 				if (cart_quantity - pay_quantity > 0) {
 					this.promote_products_name.push(this.pData[i].name);
 					this.promote_products_quan.push(cart_quantity-pay_quantity);
@@ -37,7 +37,7 @@ PrintBill.prototype.printProduct = function(){
 			var saveTx = "，节省：" + (pay_total - after_discount).toFixed(2) + "(元)";
 			if (pay_total - after_discount == 0) {saveTx = ''};
 
-			console.log("名称："+this.pData[i].name + "，数量：" + this.cart[this.pData[i].code]*code_quan + this.pData[i].unit + "，单价：" + this.pData[i].price.toFixed(2) + "(元)，小计：" + after_discount.toFixed(2) + "(元)" + saveTx);
+			console.log("名称："+this.pData[i].name + "，数量：" + cart_quantity + this.pData[i].unit + "，单价：" + this.pData[i].price.toFixed(2) + "(元)，小计：" + after_discount.toFixed(2) + "(元)" + saveTx);
 			this.toPay += after_discount;
 			if (this.pData[i].promotion == 1) {
 				this.save += (cart_quantity - pay_quantity)*this.pData[i].price;
