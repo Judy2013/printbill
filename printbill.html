@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>printbill</title>
+		 <link rel="stylesheet" href="jasmine-core/jasmine.css">
+		 <script src="jasmine-core/jasmine.js"></script>
+		 <script src="jasmine-core/jasmine-html.js"></script>
+		 <script src="jasmine-core/boot.js"></script>
+
+		 <!-- include source files here... -->
+		<script type="text/javascript" src="printbill.js"></script>
+
+		 <!-- include spec files here... -->
+		 <script src="PrintBillSpec.js"></script>
+		
+	</head>
+	<body>
+	<!-- 
+		<script>
+
+		var codes = [
+			'ITEM000001',
+			'ITEM000001',
+			'ITEM000001',
+			'ITEM000001',
+			'ITEM000001',
+			'ITEM000003-2',
+			'ITEM000005',
+			'ITEM000005',
+			'ITEM000005'
+		];
+		//promotion:1 = 买二赠一, 0 = 无优惠
+		var products = [
+			{
+				"name":"可乐",
+				"price":3.00,
+				"unit":"瓶",
+				"type":"baverage",
+				"code":"ITEM000005",
+				"promotion":1,
+				"discount":0
+			},
+			{
+				"name":"羽毛球",
+				"price":1.00,
+				"unit":"个",
+				"type":"sportsGoods",
+				"code":"ITEM000001",
+				"promotion":1,
+				"discount":0
+			},
+			{
+				"name":"苹果",
+				"price":5.50,
+				"unit":"斤",
+				"type":"fruit",
+				"code":"ITEM000003-2",
+				"promotion":1,
+				"discount":95
+			},
+			{
+				"name":"香蕉",
+				"price":6.50,
+				"unit":"斤",
+				"type":"fruit",
+				"code":"ITEM000006-2",
+				"promotion":0,
+				"discount":95
+			}
+		];
+		var bill = new PrintBill(codes, products);
+		bill.printAll();
+		</script> -->
+	</body>
+</html>
