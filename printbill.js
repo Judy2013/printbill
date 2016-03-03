@@ -18,11 +18,12 @@ function PrintBill(cData, pData){
 PrintBill.prototype.printProduct = function(){
 	for (var i = 0; i < this.pData.length; i++) {
 		if(this.cart[this.pData[i].code]){
-			var code_quan = this.pData[i].code.substring(11); //获取条形码提供的商品数量
+			var code_quan, cart_quantity, pay_quantity, pay_total, after_discount, saveTx;
+				code_quan = this.pData[i].code.substring(11); //获取条形码提供的商品数量
 			if (this.pData[i].code.length == 10) { code_quan = 1 }; //条形码未提供数量时商品为1个单位
-			var cart_quantity = this.cart[this.pData[i].code]*code_quan; //购物车的商品数量
-			var pay_quantity = cart_quantity; //需要付款的商品数量
-			var pay_total = pay_quantity*this.pData[i].price; //需要付款的金额
+				cart_quantity = this.cart[this.pData[i].code]*code_quan; //购物车的商品数量
+				pay_quantity = cart_quantity; //需要付款的商品数量
+				pay_total = pay_quantity*this.pData[i].price; //需要付款的金额
 			if (this.pData[i].promotion == 1) {//属于买二赠一时需要付款的商品数量
 				pay_quantity = 2*Math.floor(cart_quantity/(2+1)) + cart_quantity%(2+1);//实际需要付款的商品数量
 				pay_total = pay_quantity*this.pData[i].price;//实际需要支付的金额
@@ -32,9 +33,9 @@ PrintBill.prototype.printProduct = function(){
 					this.promote_products_unit.push(this.pData[i].unit);
 				};
 			};
-			var after_discount = (this.pData[i].discount == 0 || this.pData[i].promotion == 1)?pay_total:pay_total*this.pData[i].discount/100; //优惠后金额
+				after_discount = (this.pData[i].discount == 0 || this.pData[i].promotion == 1)?pay_total:pay_total*this.pData[i].discount/100; //优惠后金额
 			
-			var saveTx = "，节省：" + (pay_total - after_discount).toFixed(2) + "(元)";
+				saveTx = "，节省：" + (pay_total - after_discount).toFixed(2) + "(元)";
 			if (pay_total - after_discount == 0) {saveTx = ''};
 
 			console.log("名称："+this.pData[i].name + "，数量：" + cart_quantity + this.pData[i].unit + "，单价：" + this.pData[i].price.toFixed(2) + "(元)，小计：" + after_discount.toFixed(2) + "(元)" + saveTx);
