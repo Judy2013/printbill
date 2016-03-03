@@ -1,7 +1,6 @@
 'use strict';
 
 function PrintBill(cData, pData){
-	var _this = this;
 		this.pData = pData;
 		this.cart = {};
 		this.save = 0;
