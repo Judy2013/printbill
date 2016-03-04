@@ -1,13 +1,11 @@
 'use strict';
 
 function PrintBill(cData, pData){
-		this.pData = pData;
-		this.cart = {};
-		this.save = 0;
-		this.toPay = 0;
-		this.promote_products_name = [];
-		this.promote_products_quan = [];
-		this.promote_products_unit = [];
+	this.pData = pData;
+	this.cart = {};
+	this.save = 0;
+	this.toPay = 0;
+	this.promotions = [];
 
 	for (var i = 0; i < cData.length; i++) {
 		(!this.cart[cData[i]])?this.cart[cData[i]] = 1:this.cart[cData[i]]++;
@@ -27,9 +25,11 @@ PrintBill.prototype.printProduct = function(){
 				pay_quantity = 2*Math.floor(cart_quantity/(2+1)) + cart_quantity%(2+1);//实际需要付款的商品数量
 				pay_total = pay_quantity*this.pData[i].price;//实际需要支付的金额
 				if (cart_quantity - pay_quantity > 0) {
-					this.promote_products_name.push(this.pData[i].name);
-					this.promote_products_quan.push(cart_quantity-pay_quantity);
-					this.promote_products_unit.push(this.pData[i].unit);
+					this.promotions.push({
+						"name":this.pData[i].name,
+						"quantity":cart_quantity-pay_quantity,
+						"unit":this.pData[i].unit
+					})
 				};
 			};
 				after_discount = (this.pData[i].discount == 0 || this.pData[i].promotion == 1)?pay_total:pay_total*this.pData[i].discount/100; //优惠后金额
@@ -48,11 +48,11 @@ PrintBill.prototype.printProduct = function(){
 	};
 }
 PrintBill.prototype.printPromotion = function(){
-	if (this.promote_products_name.length > 0) {
+	if (this.promotions.length > 0) {
 		console.log("-------------------------");
 		console.log("买二赠一商品：");
-		for (var i = 0; i < this.promote_products_name.length; i++) {
-			console.log("名称：" + this.promote_products_name[i] + "，数量：" + this.promote_products_quan[i] + this.promote_products_unit[i]);
+		for (var i = 0; i < this.promotions.length; i++) {
+			console.log("名称：" + this.promotions[i].name + "，数量：" + this.promotions[i].quantity + this.promotions[i].unit);
 		};
 	};
 }
